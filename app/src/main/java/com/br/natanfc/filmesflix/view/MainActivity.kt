@@ -15,11 +15,13 @@ class MainActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
+        //movieListViewModel pega a referencia da ViewModelProvider pra manimpular o LiveData
         movieListViewModel = ViewModelProvider.NewInstanceFactory().create(MovieListViewModel::class.java)
         movieListViewModel.init()
         initObserver()
     }
     private fun initObserver(){
+        //O Observe pega todas as alteraçoes q tiver no movelist e passa pra view
         movieListViewModel.moviesList.observe(this, { list ->
             populateList(list)
         })

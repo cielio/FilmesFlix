@@ -23,8 +23,10 @@ class MovieListViewModel : ViewModel() {
             dataLancamento = null
         )
     )
-
+    //Cria a Lista com controle de anteraçoes do LiveData
     private var _moviesList = MutableLiveData<List<Movie>>()
+
+    //moviesList para modo somente leitura, pra encapsulado _moviesList na MovieListViewModel
     val moviesList: LiveData<List<Movie>>
     get() = _moviesList
 
