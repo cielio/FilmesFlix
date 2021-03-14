@@ -1,12 +1,14 @@
-package com.br.natanfc.filmesflix.viewmodel
+package com.br.natanfc.filmesflix.framework.viewmodel
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.br.natanfc.filmesflix.api.MovieRestApiTask
-import com.br.natanfc.filmesflix.model.Movie
-import com.br.natanfc.filmesflix.repository.MovieRepository
+import com.br.natanfc.filmesflix.framework.api.MovieRestApiTask
+import com.br.natanfc.filmesflix.data.MovieRepository
+import com.br.natanfc.filmesflix.domain.Movie
+import com.br.natanfc.filmesflix.implementations.MovieDatasourceImplemetation
+import com.br.natanfc.filmesflix.usecase.MoviesListUseCase
 import java.lang.Exception
 
 class MovieListViewModel : ViewModel() {
@@ -16,8 +18,9 @@ class MovieListViewModel : ViewModel() {
     }
 
     private val movieRestApiTask = MovieRestApiTask()
-    private val movieRepository = MovieRepository(movieRestApiTask)
-
+    private val movieDataSource = MovieDatasourceImplemetation(movieRestApiTask)
+    private val movieRepository = MovieRepository(movieDataSource)
+    private val moviesListUseCase = MoviesListUseCase(movieRepository)
     //Cria a Lista com controle de anteraçoes do LiveData
     private var _moviesList = MutableLiveData<List<Movie>>()
 
@@ -32,7 +35,7 @@ class MovieListViewModel : ViewModel() {
     private  fun getAllMovies(){
         Thread{
             try {
-                _moviesList.postValue(movieRepository.getAllMovies())
+                _moviesList.postValue(moviesListUseCase.invoke())
             }catch (exception: Exception){
                 Log.d(TAG,exception.message.toString())
             }
