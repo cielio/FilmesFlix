@@ -1,5 +1,6 @@
 package com.br.natanfc.filmesflix.presenter
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -9,7 +10,7 @@ import com.br.natanfc.filmesflix.domain.Movie
 import com.br.natanfc.filmesflix.framework.viewmodel.MovieListViewModel
 import kotlinx.android.synthetic.main.activity_main.*
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : AppCompatActivity(), MoviesAdapter.OnItemClickListener {
 
     private lateinit var movieListViewModel: MovieListViewModel
 
@@ -32,13 +33,17 @@ class MainActivity : AppCompatActivity() {
         })
     }
     private fun populateList(list: List<Movie>) {
-        moviesList.apply {
-            hasFixedSize()
-            adapter = MoviesAdapter(list)
-        }
+        moviesList.hasFixedSize()
+        moviesList.adapter = MoviesAdapter(list,this)
     }
     //Liga e desliga o progressBar
     private fun loadingVisibility(isLoading: Boolean){
         progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+    }
+
+    override fun onItemClick(position: Int) {
+        val intent = Intent(this, MovieDetailsActivity::class.java)
+        intent.putExtra("position", position)
+        startActivity(intent)
     }
 }
