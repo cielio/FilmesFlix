@@ -13,6 +13,7 @@ import kotlinx.android.synthetic.main.activity_main.*
 class MainActivity : AppCompatActivity(), MoviesAdapter.OnItemClickListener {
 
     private lateinit var movieListViewModel: MovieListViewModel
+    private lateinit var moviesList: List<Movie>
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -27,14 +28,16 @@ class MainActivity : AppCompatActivity(), MoviesAdapter.OnItemClickListener {
         //O Observe pega todas as alteraçoes q tiver no movelist e passa pra view
         movieListViewModel.moviesList.observe(this, { list ->
             if (list.isNotEmpty()){
+                moviesList = list
                 populateList(list)
                 loadingVisibility(false)
             }
         })
     }
     private fun populateList(list: List<Movie>) {
-        moviesList.hasFixedSize()
-        moviesList.adapter = MoviesAdapter(list,this)
+        moviesListRV.hasFixedSize()
+        moviesList = list
+        moviesListRV.adapter = MoviesAdapter(list,this)
     }
     //Liga e desliga o progressBar
     private fun loadingVisibility(isLoading: Boolean){
@@ -43,7 +46,8 @@ class MainActivity : AppCompatActivity(), MoviesAdapter.OnItemClickListener {
 
     override fun onItemClick(position: Int) {
         val intent = Intent(this, MovieDetailsActivity::class.java)
-        intent.putExtra("position", position)
+        intent.putExtra("movie", moviesList[position]
+        )
         startActivity(intent)
     }
 }
