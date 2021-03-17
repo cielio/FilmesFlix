@@ -16,8 +16,6 @@ Este projeto consiste em exibir uma lista de filmes, oriundas de uma API.
 **Screenshot**
 <p float="left">
   <img src="/filmes_flix.png" width="300" />
-</p>
-<p float="left">
   <img src="/detalhes_flix.jpg" width="300" />
 </p>
 **Desafios para os alunos:**
