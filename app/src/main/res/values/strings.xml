@@ -1,4 +1,5 @@
 <resources>
     <string name="app_name">FilmesFlix</string>
     <string name="banner">Banner</string>
+    <string name="title">Title</string>
 </resources>

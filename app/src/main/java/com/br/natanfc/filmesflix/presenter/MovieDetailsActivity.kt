@@ -15,12 +15,13 @@ class MovieDetailsActivity : AppCompatActivity() {
         setContentView(R.layout.activity_movie_details)
 
         val movie = intent.extras?.getParcelable<Movie>("movie")
+
         tv_movie_title.text = movie?.titulo
-        iv_movie_poster.load(movie?.imagem){
-            //imagem padrao antes de carregar a img da lista
+        tv_movie_overview.text = movie?.descricao
+
+        iv_movie_poster.load(movie?.imagem) {
             placeholder(R.drawable.ic_baseline_cloud_download)
-            //caso a imagem na tenha na lista ou erro de load..
             fallback(R.drawable.ic_baseline_cloud_download)
-    }
+        }
     }
 }

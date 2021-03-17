@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:padding="16dp"
     android:clipToPadding="false"
     xmlns:android="http://schemas.android.com/apk/res/android"
     >
@@ -9,10 +8,7 @@
         android:id="@+id/iv_movie_poster"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_marginTop="-17dp"
-        android:layout_marginLeft="-17dp"
-        android:layout_marginRight="-17dp"
-        android:layout_marginBottom="-17dp"
+        android:scaleType = "centerCrop"
         android:contentDescription="@string/banner" />
 
     <FrameLayout
@@ -28,25 +24,30 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
-            android:padding="16dp"
+            android:padding="10dp"
             android:layout_gravity="bottom">
             <TextView
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="5dp"
                 android:id="@+id/tv_movie_title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Title"
+                android:text="@string/title"
                 android:textColor="@color/colorLightBlue"
-                android:textSize="28sp"
-                android:layout_marginBottom="8dp"/>
+                android:textSize="28sp" />
 
             <TextView
                 android:id="@+id/tv_movie_overview"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_weight="1"
+                android:layout_marginLeft="15dp"
+                android:layout_marginRight="15dp"
+                android:layout_marginBottom="25dp"
                 android:textSize="16sp"
                 android:textColor="@color/colorWhite"
-                android:layout_marginBottom="8dp"/>
+                />
         </LinearLayout>
     </FrameLayout>
 

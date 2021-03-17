@@ -14,6 +14,7 @@ class MainActivity : AppCompatActivity(), MoviesAdapter.OnItemClickListener {
 
     private lateinit var movieListViewModel: MovieListViewModel
     private lateinit var moviesList: List<Movie>
+    
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,14 +35,18 @@ class MainActivity : AppCompatActivity(), MoviesAdapter.OnItemClickListener {
             }
         })
     }
+
     private fun populateList(list: List<Movie>) {
         moviesListRV.hasFixedSize()
         moviesList = list
         moviesListRV.adapter = MoviesAdapter(list,this)
+
     }
+
     //Liga e desliga o progressBar
     private fun loadingVisibility(isLoading: Boolean){
         progressBar.visibility = if (isLoading) View.VISIBLE else View.GONE
+
     }
 
     override fun onItemClick(position: Int) {

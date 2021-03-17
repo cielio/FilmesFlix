@@ -19,6 +19,7 @@ class MoviesAdapter(
         val view = LayoutInflater.from(parent.context).inflate(R.layout.movie_item_layout, parent, false)
         return MoviesViewHolder(view)
     }
+
     // passa o conteudo da Lista para a tela
     override fun onBindViewHolder(holder: MoviesViewHolder, position: Int) {
         //modo padrao
@@ -35,6 +36,7 @@ class MoviesAdapter(
         }
 
     }
+
 
     override fun getItemCount(): Int = moviesList.size
 
